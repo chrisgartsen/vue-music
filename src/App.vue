@@ -1,3 +1,4 @@
+/* eslint-disable vue/no-multiple-template-root */
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
