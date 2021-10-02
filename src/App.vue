@@ -477,7 +477,6 @@
 
   <!-- Auth Modal -->
   <auth-modal />
-
 </template>
 
 <script>
