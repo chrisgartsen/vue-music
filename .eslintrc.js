@@ -27,5 +27,11 @@ module.exports = {
         jest: true
       }
     }
+  ],
+
+  'extends': [
+    'plugin:vue/essential',
+    'eslint:recommended',
+    '@vue/prettier'
   ]
 }

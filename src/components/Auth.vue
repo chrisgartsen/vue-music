@@ -1,8 +1,8 @@
 <template>
   <div
+    id="modal"
     class="fixed z-10 inset-0 overflow-y-auto"
     :class="{ hidden: !authModalShow }"
-    id="modal"
   >
     <div
       class="
@@ -142,11 +142,12 @@
             </button>
           </form>
           <!-- Registration Form -->
-          <form v-show="tab === 'register'">
+          <vee-form v-show="tab === 'register'">
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2">Name</label>
-              <input
+              <vee-field
+                name="name"
                 type="text"
                 class="
                   block
@@ -288,7 +289,7 @@
             >
               Submit
             </button>
-          </form>
+          </vee-form>
         </div>
       </div>
     </div>
