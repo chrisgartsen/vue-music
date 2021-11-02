@@ -143,7 +143,9 @@
           </form>
 
           <!-- Registration Form -->
-          <vee-form v-show="tab === 'register'" :validation-schema="schema">
+          <vee-form v-show="tab === 'register'" 
+                    :validation-schema="schema" 
+                    @submit="register">
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2">Name</label>
@@ -191,8 +193,9 @@
             <!-- Age -->
             <div class="mb-3">
               <label class="inline-block mb-2">Age</label>
-              <input
+              <vee-field
                 type="number"
+                name="age"
                 class="
                   block
                   w-full
@@ -206,12 +209,14 @@
                   rounded
                 "
               />
+              <ErrorMessage class="text-red-600" name="age" />
             </div>
             <!-- Password -->
             <div class="mb-3">
               <label class="inline-block mb-2">Password</label>
-              <input
+              <vee-field
                 type="password"
+                name="password"
                 class="
                   block
                   w-full
@@ -226,12 +231,14 @@
                 "
                 placeholder="Password"
               />
+              <ErrorMessage class="text-red-600" name="password" />
             </div>
             <!-- Confirm Password -->
             <div class="mb-3">
               <label class="inline-block mb-2">Confirm Password</label>
-              <input
+              <vee-field
                 type="password"
+                name="confirm_password"
                 class="
                   block
                   w-full
@@ -246,11 +253,14 @@
                 "
                 placeholder="Confirm Password"
               />
+              <ErrorMessage class="text-red-600" name="confirm_password" />
             </div>
             <!-- Country -->
             <div class="mb-3">
               <label class="inline-block mb-2">Country</label>
-              <select
+              <vee-field
+                as="select"
+                name="country"
                 class="
                   block
                   w-full
@@ -267,15 +277,20 @@
                 <option value="USA">USA</option>
                 <option value="Mexico">Mexico</option>
                 <option value="Germany">Germany</option>
-              </select>
+                <option value="Belgium">Belgium</option>
+              </vee-field>
+              <ErrorMessage class="text-red-600" name="country" />
             </div>
             <!-- TOS -->
             <div class="mb-3 pl-6">
-              <input
+              <vee-field
+                name="tos"
+                value="1"
                 type="checkbox"
-                class="w-4 h-4 float-left -ml-6 mt-1 rounded"
+                class="w-4 h-4 float-left -ml-6 mt-1 rounded inline-block"
               />
               <label class="inline-block">Accept terms of service</label>
+              <ErrorMessage class="text-red-600 block" name="tos" />
             </div>
             <button
               type="submit"
@@ -311,11 +326,11 @@ export default {
       schema: {
         name: 'required|min:6|max:100|alpha_spaces',
         email: 'required|min:6|max:100|email',
-        age: '',
-        password: '',
-        confirm_password: '',
-        country: '',
-        tos: ''
+        age: 'required|min_value:18|max_value:100',
+        password: 'required|min:6|max:100',
+        confirm_password: 'confirmed:@password',
+        country: 'required|excluded:Belgium',
+        tos: 'required'
       }
     }
   },
@@ -323,7 +338,10 @@ export default {
     ...mapGetters(['authModalShow'])
   },
   methods: {
-    ...mapMutations(['toggleAuthModal'])
+    ...mapMutations(['toggleAuthModal']),
+    register(values) {
+      console.log('registering', values)
+    }
   }
 }
 </script>
