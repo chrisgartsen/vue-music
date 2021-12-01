@@ -145,7 +145,8 @@
           <!-- Registration Form -->
           <vee-form v-show="tab === 'register'" 
                     :validation-schema="schema" 
-                    @submit="register">
+                    @submit="register"
+                    :initial-values="userData">
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2">Name</label>
@@ -215,9 +216,11 @@
             <div class="mb-3">
               <label class="inline-block mb-2">Password</label>
               <vee-field
-                type="password"
                 name="password"
-                class="
+                :bails="false"
+                v-slot="{ field, errors }"
+              >
+              <input class="
                   block
                   w-full
                   py-1.5
@@ -229,8 +232,11 @@
                   focus:outline-none focus:border-black
                   rounded
                 "
+                type="password"
                 placeholder="Password"
-              />
+                v-bind="field">
+                <div class="text-red-600" v-for="error in errors" :key="error">{{ error }}</div>
+              </vee-field>
               <ErrorMessage class="text-red-600" name="password" />
             </div>
             <!-- Confirm Password -->
@@ -328,9 +334,12 @@ export default {
         email: 'required|min:6|max:100|email',
         age: 'required|min_value:18|max_value:100',
         password: 'required|min:6|max:100',
-        confirm_password: 'confirmed:@password',
-        country: 'required|excluded:Belgium',
-        tos: 'required'
+        confirm_password: 'passwords_mismatch:@password',
+        country: 'required|country_excluded:Belgium',
+        tos: 'tos'
+      },
+      userData: {
+        country: 'USA'
       }
     }
   },
