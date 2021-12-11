@@ -83,11 +83,10 @@
           </ul>
 
           <!-- Login Form -->
-          <login-form v-if="tab==='login'"/>
+          <login-form v-if="tab === 'login'" />
 
           <!-- Registration Form -->
-          <register-form v-else/>
-
+          <register-form v-else />
         </div>
       </div>
     </div>
@@ -115,7 +114,7 @@ export default {
     ...mapGetters(['authModalShow'])
   },
   methods: {
-    ...mapMutations(['toggleAuthModal']),
+    ...mapMutations(['toggleAuthModal'])
   }
 }
 </script>
