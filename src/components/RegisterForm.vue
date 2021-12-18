@@ -183,7 +183,6 @@
 </template>
 
 <script>
-import { auth, usersCollection } from '@/includes/firebase'
 
 export default {
   name: 'RegisterForm',
@@ -209,7 +208,6 @@ export default {
   },
   methods: {
     async register(values) {
-      let userCredentials = null
 
       this.reg_show_alert = true
       this.reg_in_submission = true
@@ -217,12 +215,7 @@ export default {
       this.reg_alert_msg = 'Please wait! Your account is being created.'
 
       try {
-        userCredentials = await auth.createUserWithEmailAndPassword(
-          values.email,
-          values.password
-        )
-
-        console.log(userCredentials)
+        await this.$store.dispatch('register', values)
       } catch (error) {
         this.reg_in_submission = false
         this.reg_alert_variant = 'bg-red-500'
@@ -232,24 +225,7 @@ export default {
         console.log(error)
         return
       }
-
-      try {
-        await usersCollection.add({
-          name: values.name,
-          email: values.email,
-          age: values.age,
-          country: values.country
-        })
-      } catch (error) {
-        this.reg_in_submission = false
-        this.reg_alert_variant = 'bg-red-500'
-        this.reg_alert_msg =
-          'An unexpected error occured! Please try again later'
-
-        console.log(error)
-        return
-      }
-
+      
       this.reg_alert_variant = 'bg-green-500'
       this.reg_alert_msg = 'Success! Your account has been created.'
 
