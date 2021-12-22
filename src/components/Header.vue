@@ -18,7 +18,9 @@
               <a class="px-2 text-white" href="#">Manage</a>
             </li>
             <li>
-              <a class="px-2 text-white" href="#" @click.prevent='signOut'>Log out</a>
+              <a class="px-2 text-white" href="#" @click.prevent="signOut"
+                >Log out</a
+              >
             </li>
           </template>
         </ul>
