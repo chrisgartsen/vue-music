@@ -34,7 +34,6 @@ export default {
 </script>
 
 <style>
-
 .fade-enter-from {
   opacity: 0;
 }
@@ -47,5 +46,4 @@ export default {
   transition: all 0.5s linear;
   opacity: 0;
 }
-
 </style>

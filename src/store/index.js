@@ -19,7 +19,7 @@ export default createStore({
       return state.authModalShow
     },
     playing(state) {
-      if(state.sound.playing) {
+      if (state.sound.playing) {
         return state.sound.playing()
       } else {
         return false
@@ -43,7 +43,9 @@ export default createStore({
     updatePosition(state) {
       state.seek = helper.formatTime(state.sound.seek())
       state.duration = helper.formatTime(state.sound.duration())
-      state.playerProgress = `${(state.sound.seek() / state.sound.duration()) * 100}%`
+      state.playerProgress = `${
+        (state.sound.seek() / state.sound.duration()) * 100
+      }%`
     }
   },
   actions: {
@@ -80,14 +82,14 @@ export default createStore({
       }
     },
     async newSong({ commit, state, dispatch }, payload) {
-      if(state.sound instanceof Howl) {
+      if (state.sound instanceof Howl) {
         state.sound.unload()
       }
 
       commit('newSong', payload)
       state.sound.play()
 
-      state.sound.on('play', () =>{
+      state.sound.on('play', () => {
         requestAnimationFrame(() => {
           dispatch('progress')
         })
@@ -95,19 +97,19 @@ export default createStore({
     },
     progress({ commit, state, dispatch }) {
       commit('updatePosition')
-      if(state.sound.playing()) {
-        requestAnimationFrame(()=> {
+      if (state.sound.playing()) {
+        requestAnimationFrame(() => {
           dispatch('progress')
         })
       }
     },
-    updateSeek({ state, dispatch }, payload){ // event object passed as payload
-      if(!state.sound.playing) {
+    updateSeek({ state, dispatch }, payload) {
+      // event object passed as payload
+      if (!state.sound.playing) {
         return
       }
 
       //console.log(payload)
-
 
       const { x, width } = payload.currentTarget.getBoundingClientRect()
       const clickX = payload.clientX - x
@@ -120,11 +122,11 @@ export default createStore({
       })
     },
     async toggleAudio({ state }) {
-      if(!state.sound.playing) {
+      if (!state.sound.playing) {
         return
       }
 
-      if(state.sound.playing()) {
+      if (state.sound.playing()) {
         state.sound.pause()
       } else {
         state.sound.play()
