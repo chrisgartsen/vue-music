@@ -26,5 +26,17 @@ function loadLocaleMessages() {
 export default createI18n({
   locale: process.env.VUE_APP_I18N_LOCALE || 'en',
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
-  messages: loadLocaleMessages()
+  messages: loadLocaleMessages(),
+  numberFormats: {
+    en: {
+      currency: {
+        style: 'currency', currency: 'USD'
+      }
+    },
+    ja: {
+      currency: {
+        style: 'currency', currency: 'JPY'
+      }
+    }
+  }
 })
