@@ -58,7 +58,7 @@ export default {
     AppSongItem
   },
   directives: {
-    'iconSecondary': iconSecondary
+    iconSecondary: iconSecondary
   },
   data() {
     return {

@@ -9,6 +9,7 @@ import './assets/tailwind.css'
 import './assets/main.css'
 
 import icon from './directives/icon'
+import i18n from './includes/i18n'
 
 let app
 
@@ -17,6 +18,7 @@ auth.onAuthStateChanged(() => {
     console.log('Initialising app.')
     app = createApp(App)
 
+    app.use(i18n)
     app.use(store)
     app.use(router)
     app.use(VeeValidatePlugin)

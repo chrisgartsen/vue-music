@@ -22,7 +22,7 @@ const routes = [
     path: '/manage-music',
     component: Manage,
     alias: '/manage',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true }
   },
   {
     name: 'Song',
@@ -42,8 +42,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  
-  if (!to.matched.some(record => record.meta.requiresAuth)) {
+  if (!to.matched.some((record) => record.meta.requiresAuth)) {
     next()
     return
   }

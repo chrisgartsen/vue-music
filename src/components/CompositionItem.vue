@@ -120,7 +120,7 @@ export default {
       required: true
     },
     updateUnsavedFlag: {
-      type: Function,
+      type: Function
     },
     index: {
       type: Number,
