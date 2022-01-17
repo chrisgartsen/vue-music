@@ -10,12 +10,12 @@ import './assets/main.css'
 
 import icon from './directives/icon'
 import i18n from './includes/i18n'
+import './registerServiceWorker'
 
 let app
 
 auth.onAuthStateChanged(() => {
   if (!app) {
-    console.log('Initialising app.')
     app = createApp(App)
 
     app.use(i18n)

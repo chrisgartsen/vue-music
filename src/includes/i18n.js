@@ -30,12 +30,14 @@ export default createI18n({
   numberFormats: {
     en: {
       currency: {
-        style: 'currency', currency: 'USD'
+        style: 'currency',
+        currency: 'USD'
       }
     },
     ja: {
       currency: {
-        style: 'currency', currency: 'JPY'
+        style: 'currency',
+        currency: 'JPY'
       }
     }
   }
