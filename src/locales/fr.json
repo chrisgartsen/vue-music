@@ -2,6 +2,10 @@
   "home": {
     "listen": "Écoutez de la bonne Musique!"
   },
+  "register": {
+    "TOS": "",
+    "accept": ""
+  },
   "song": {
     "comment_count": ""
   }
