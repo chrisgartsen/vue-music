@@ -96,7 +96,7 @@ export default {
           this.uploads.push({
             taks: {},
             current_progress: 100,
-            name:file.name,
+            name: file.name,
             variant: 'bg-red-400',
             icon: 'fas fa-times',
             text_class: 'text-red-400'

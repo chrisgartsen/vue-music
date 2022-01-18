@@ -12,6 +12,8 @@ import icon from './directives/icon'
 import i18n from './includes/i18n'
 import './registerServiceWorker'
 
+import GlobalComponents from './includes/_globals.js'
+
 let app
 
 auth.onAuthStateChanged(() => {
@@ -22,6 +24,7 @@ auth.onAuthStateChanged(() => {
     app.use(store)
     app.use(router)
     app.use(VeeValidatePlugin)
+    app.use(GlobalComponents)
     app.directive('icon', icon)
 
     app.mount('#app')

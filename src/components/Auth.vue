@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 import LoginForm from './LoginForm.vue'
 import RegisterForm from './RegisterForm.vue'
@@ -111,7 +111,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['authModalShow'])
+    ...mapState({
+      authModalShow: (state) => state.auth.authModalShow
+    })
   },
   methods: {
     ...mapMutations(['toggleAuthModal'])
